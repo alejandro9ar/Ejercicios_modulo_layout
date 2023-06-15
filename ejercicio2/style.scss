@@ -1,0 +1,97 @@
+@import "theme1";
+
+
+@mixin colorBox($color){
+    &.base-color{
+        background-color: $color;
+    }
+
+    @for $i from 1 through 4 {
+        &.darken-#{$i} {
+            background-color: darken($color, $i * 3%);
+        }
+
+        &.lighten-#{$i} {
+            background-color: lighten($color, $i * 3%);
+        }
+    }
+}
+
+@mixin centerInContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+footer {
+    padding: 30px;
+    background-color: $color;
+}
+
+header {
+    padding: 30px;
+    background-color: $color;
+}
+
+body {
+    font-family: "Montserrat", Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    background-color: beige;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+}
+
+p {
+    text-align: center;
+    padding: 15px;
+    &.mainFont {
+        font-family: $mainFontFamily;
+        font-size: 40px;
+    }
+    &.secondaryFont{
+        font-family: $secondaryFontFamily;
+        font-size: 20px;
+    }
+}
+
+.container {
+    @include centerInContainer;
+    padding: 20px;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    .box {
+        @include centerInContainer;
+        border-radius: 10px;
+        border: 1px solid black;
+        height: 100px;
+        width: 100px;
+        text-align: center;
+        &.base{
+            background-color: $color;
+        }
+
+        &.important{
+            background-color: darken($color, 40%)
+        }
+
+        &.warning {
+            background-color: darken($color, 20%)
+
+        }
+        &.shadow {
+            box-shadow: $shadowDirectionHorizontal 10px 4px black ;
+
+        }
+    }
+}
+

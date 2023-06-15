@@ -1,0 +1,83 @@
+@mixin colorBox($color){
+    &.base-color{
+        background-color: $color;
+    }
+
+    @for $i from 1 through 4 {
+        &.darken-#{$i} {
+            background-color: darken($color, $i * 3%);
+        }
+
+        &.lighten-#{$i} {
+            background-color: lighten($color, $i * 3%);
+        }
+    }
+}
+
+footer {
+    padding: 30px;
+    background-color: blueviolet;
+}
+
+header {
+    padding: 30px;
+    background-color: blueviolet;
+}
+
+@mixin centerText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: beige;
+    font-family: "Montserrat", Arial, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    background-color: aqua;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    @include centerText;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+    .box {
+        @include centerText;
+        border-radius: 10px;
+        border: 1px solid white;
+        flex-grow: 1;
+        flex-basis: 100px;
+        max-width: 100px;
+        height: 100px;
+        &.base-color{
+            flex-grow: 2;
+            max-width: 200px;
+            min-width: 100px;
+        }
+    }
+    &.red .box {
+        @include colorBox(red);
+    }
+
+    &.green .box {
+        @include colorBox(green);
+    }
+
+    &.orange .box {
+        @include colorBox(orange);
+    }
+}
+
